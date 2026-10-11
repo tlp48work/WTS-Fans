@@ -1,26 +1,31 @@
-# Way To Shine Fans.com — prototype
+# Way To Shine Fans.com — interactive prototype v2
 
-ต้นแบบเว็บแอปธีมดำ/น้ำเงิน พร้อม SHOP, PRE-ORDER countdown, token wallet 3 ประเภท, login/register, chat UI และ Admin Studio
+## Demo admin
+Email: `admin@waytoshinefans.com`
+Password: `WTSadmin2026!`
 
-## เปิดใช้งานบน Vercel
-1. แตกไฟล์ ZIP แล้วอัปโหลดโฟลเดอร์โปรเจกต์ขึ้น GitHub
-2. เข้า Vercel → Add New → Project → Import Git Repository
-3. กด Deploy ได้เลย (เป็น static site ไม่ต้อง build command)
-4. URL จะได้จาก Vercel หลัง deploy สำเร็จ
+## Features
+- Clickable navigation and animated page transitions
+- Shop with AVAILABLE FOR SALE / NOT AVAILABLE FOR SALE; timed products move automatically when the sale ends
+- Register/login, separate admin UI, demo token balances
+- Free purchase allowance: first 2 packs per account; subsequent packs use the product's specified token type
+- Admin can add unlimited catalog items (browser storage permitting), upload product image directly from device, set token type, price, stock, duration
+- New orders appear in Admin Inbox / Orders and a system order message
+- Admin can chat, attach an image and a file to an order; delivered items appear in the customer's bag and the chat
+- Admin order notification counter
 
-## บัญชีแอดมินสำหรับเดโมเท่านั้น
-- Email: `admin@waytoshinefans.com`
-- Password: `WTSadmin2026!`
+## Deploy to Vercel
+Upload the files in this folder to a GitHub repository, import the repository at https://vercel.com, then Deploy. No build command required.
 
-**สำคัญ:** นี่เป็น prototype ที่เก็บข้อมูลใน `localStorage` ของเบราว์เซอร์ ไม่ใช่ระบบ production จริง ข้อมูลไม่ได้ sync ระหว่างอุปกรณ์ ผู้ใช้สามารถแก้ข้อมูลฝั่งเครื่องได้ และรหัสผ่านเดโมไม่ปลอดภัย ห้ามใช้กับข้อมูลจริงหรือรับชำระเงินจริง
+## Critical limitations
+This is a front-end prototype. Data is saved in the current browser's localStorage. It does NOT provide genuine cross-device messaging or admin notifications over the internet, and users can inspect/edit browser data. File uploads are stored locally and subject to browser quota. Do not use for real accounts, valuable tokens, or real fulfillment.
 
-ก่อนเปิดใช้จริง ควรเชื่อม Supabase (Auth + Postgres + Row Level Security) หรือ backend ที่ปลอดภัย เพื่อให้:
-- ตรวจสิทธิ์ Admin ฝั่ง server ไม่ใช่ใน browser
-- จัดเก็บ password ด้วยระบบ auth ที่ปลอดภัย
-- sync สินค้า/ออเดอร์/ข้อความ/ยอด token ข้ามอุปกรณ์
-- ป้องกันการซื้อซ้ำและการแก้ token โดยผู้ใช้
-- ส่งข้อความแชตถึงแอดมินได้จริง
-- ตั้งเวลาสิ้นสุดพรีออร์เดอร์จากเวลา server
+To make this genuinely online, connect Supabase (Auth, Postgres, Storage, Realtime) or another backend:
+- Server-side role enforcement for Admin
+- Shared users/products/orders/wallet/messages tables with row-level security
+- Supabase Storage for product and delivery uploads
+- Realtime subscriptions / push or email notifications for new orders
+- Server-side token ledger and atomic order/first-two-free enforcement
+- Server-controlled sale end time and fulfillment status
 
-## หมายเหตุ
-สิทธิ์ “ฟรีครั้งแรก” ในเดโมนี้นับต่อสมาชิกต่อสินค้า โดยหลังจากนั้นจะใช้ token ชนิดที่สินค้านั้นระบุไว้ โทเค่นเริ่มต้นเป็นยอดทดลอง ไม่มีมูลค่าเงินจริง
+Do not treat browser localStorage as secure authentication or a source of truth for token balances.
