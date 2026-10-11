@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050916"><title>Way To Shine Fans.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar">
+    <button class="logo" onclick="navigate('shop')" aria-label="Way To Shine home"><span class="logo-star">✦</span><span>WAY TO <b>SHINE</b><small>FANS.COM</small></span></button>
+    <div class="top-actions"><span class="online-dot"></span><span class="top-label">FAN COMMUNITY</span><button id="authBtn" class="outline-btn" onclick="openAuth()">เข้าสู่ระบบ</button></div>
+  </header>
+  <main id="main" class="main"></main>
+  <nav class="bottom-nav">
+    <button data-page="shop" class="nav-item active" onclick="navigate('shop')"><span>⌂</span><small>SHOP</small></button>
+    <button data-page="preorders" class="nav-item" onclick="navigate('preorders')"><span>◷</span><small>PRE-ORDER</small></button>
+    <button data-page="wallet" class="nav-item" onclick="navigate('wallet')"><span>✧</span><small>TOKEN</small></button>
+    <button data-page="chat" class="nav-item" onclick="navigate('chat')"><span>♡</span><small>แชต</small></button>
+    <button data-page="account" class="nav-item" onclick="navigate('account')"><span>♙</span><small>ACCOUNT</small></button>
+  </nav>
+</div>
+<div id="modalRoot"></div>
+<div id="toast" class="toast"></div>
+<script src="/app.js"></script>
+</body></html>
